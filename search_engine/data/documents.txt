@@ -1,0 +1,4 @@
+Machine learning is powerful
+Python is great for machine learning
+AI is the future
+Learning Python is fun
