@@ -19,3 +19,22 @@ def search(query, index):
         
     return list(results) if results else []
 
+
+def ORsearch(query, index):
+    tokens = tokenize(query)
+
+    results = set()
+
+    for token in tokens:
+        if token in index:
+            docs = set(index[token])
+
+            if results is None:
+                results = docs
+            
+            else:
+                results = results.union(docs)
+        else:
+            continue
+        
+    return list(results) if results else []
