@@ -18,11 +18,14 @@ def main():
             query = query.replace("OR", "")
             results = ORsearch(query, index)
         else:
-            results = search(query, index)
+            results = search(query, index, documents)
 
-        ranked_results = search_relevance(results, query, index)
-        for doc_id, score in ranked_results.items():
-            print(documents[doc_id])
+        # ranked_results = search_relevance(results, query, index)
+        # for doc_id, score in ranked_results.items():
+        #     print(documents[doc_id])
+
+        for doc_id, score in results:
+            print(f"{score:.4f} → {documents[doc_id]}")
 
 
 if __name__ == "__main__":

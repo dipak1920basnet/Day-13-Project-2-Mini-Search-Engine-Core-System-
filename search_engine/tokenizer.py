@@ -9,5 +9,4 @@ def tokenize(text):
     words = text.split()
     stopword = set(stopwords.words("english"))
     tokens = [w for w in words if w.lower() not in stopword]
-    print("new tokens:: ", tokens)
     return tokens
