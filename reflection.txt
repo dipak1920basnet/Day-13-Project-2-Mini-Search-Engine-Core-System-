@@ -1,0 +1,10 @@
+Answer:
+
+1️⃣ Why is inverted index faster than brute force?
+=> Becasue while we query about the text we can avoid scanning every documents. 
+2️⃣ Why tokenize text before indexing?
+=> fast look up, break text into searchable components.
+3️⃣ Why use sets in search intersection?
+=> Easier to implement with AND and OR search. 
+4️⃣ How does this relate to ML systems?
+=> It relates with LLM 
