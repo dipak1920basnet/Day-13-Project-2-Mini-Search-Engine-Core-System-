@@ -1,6 +1,6 @@
 from storage import load_documents
 from indexer import build_index
-from search import search, ORsearch
+from search import search, ORsearch, search_relevance
 
 
 def main():
@@ -20,10 +20,11 @@ def main():
         else:
             results = search(query, index)
 
-        print("\nResults: ")
-        for r in results:
-            print(documents[r])
+        ranked_results = search_relevance(results,query, index)
+        for doc_id, score in ranked_results.items():
+            print(documents[doc_id])
 
+    
 
 if __name__ == "__main__":
     main()

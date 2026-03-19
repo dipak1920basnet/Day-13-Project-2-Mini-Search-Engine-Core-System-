@@ -1,5 +1,4 @@
 from tokenizer import tokenize
-
 def build_index(documents):
     
     index = {}
