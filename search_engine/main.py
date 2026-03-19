@@ -24,7 +24,7 @@ def main():
         # for doc_id, score in ranked_results.items():
         #     print(documents[doc_id])
 
-        for doc_id, score in results:
+        for doc_id, score in results[:3]:
             print(f"{score:.4f} → {documents[doc_id]}")
 
 
