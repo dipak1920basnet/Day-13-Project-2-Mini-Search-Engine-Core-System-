@@ -5,7 +5,7 @@ def build_index(documents):
     print("documents: ",documents)
 
     for doc_id, text in enumerate(documents):
-        tokens = tokenize(text)
+        tokens = tokenize(text.lower())
 
         for token in tokens:
 
