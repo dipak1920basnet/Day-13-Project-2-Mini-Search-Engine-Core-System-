@@ -1,4 +1,5 @@
 from search import search
+from validator import validate_query
 
 class SearchEngine:
 
@@ -7,5 +8,6 @@ class SearchEngine:
         self.index = index
 
     def query(self, text):
+        validate_query(text)
         return search(text, self.index, self.documents)
     
