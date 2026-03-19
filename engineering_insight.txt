@@ -1,0 +1,23 @@
+TF rewards frequency inside the documents 
+IDF penalizes common words
+
+important + rare words → high score
+
+
+Answer:
+
+1️⃣ Why does TF-IDF improve search quality?
+=> Because it calculates the relevancy score for the document. 
+=> Because of relevancy score document can be sorted as per the need. 
+2️⃣ Why does IDF penalize common words?
+=> sometimes the rare word like blockchain becomes more informative compared to normal ones
+=> works based on the weights
+3️⃣ Why is normalization important?
+=> without normalization it becomes difficult to find the relevent document as longer document will have higher score for relevancy.
+4️⃣ How does this connect to:
+Vector Space:
+    represent document as vector of numbers.
+Cosine Similarity: 
+    find similarity between the documents.
+ML feature Engineering. 
+    convert raw text to numerical features. 
