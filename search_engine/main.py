@@ -1,6 +1,8 @@
 from storage import load_documents, save_index, load_index
 from indexer import build_index
 from engine import SearchEngine
+import time 
+
 def main():
     documents = load_documents()
     if documents == None:
@@ -18,15 +20,19 @@ def main():
     engine = SearchEngine(documents,index)
     while True:
         query = input("Search: ")
-
+        # query starts to begin
+        start = time.time()
         if query == "exit":
             break
         
         results = engine.query(query)
 
+        # query time ends
+        end = time.time()
+        print("Query time:", end-start)
         for doc_id, score in results[:3]:
             print(f"{score:.4f} → {documents[doc_id]}")
-
+    
 
 if __name__ == "__main__":
     main()
