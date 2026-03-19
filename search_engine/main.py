@@ -1,7 +1,6 @@
 from storage import load_documents, save_index, load_index
 from indexer import build_index
-from search import search, ORsearch, search_relevance
-
+from engine import SearchEngine
 def main():
     documents = load_documents()
     if documents == None:
@@ -16,20 +15,14 @@ def main():
         print("Loaded cached index")
     # print(index)
 
+    engine = SearchEngine(documents,index)
     while True:
         query = input("Search: ")
 
         if query == "exit":
             break
-        if "OR" in query:
-            query = query.replace("OR", "")
-            results = ORsearch(query, index)
-        else:
-            results = search(query, index, documents)
-
-        # ranked_results = search_relevance(results, query, index)
-        # for doc_id, score in ranked_results.items():
-        #     print(documents[doc_id])
+        
+        results = engine.query(query)
 
         for doc_id, score in results[:3]:
             print(f"{score:.4f} → {documents[doc_id]}")
