@@ -16,4 +16,6 @@ def load_index():
             return json.load(file)
     except FileNotFoundError:
         return None
+    except json.JSONDecodeError:
+        return None
     
