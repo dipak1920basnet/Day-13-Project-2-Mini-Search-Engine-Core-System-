@@ -1,15 +1,20 @@
-from storage import load_documents
+from storage import load_documents, save_index, load_index
 from indexer import build_index
 from search import search, ORsearch, search_relevance
-
 
 def main():
     documents = load_documents()
     if documents == None:
         print("Currently document store is empty to search")
         return
-    index = build_index(documents)
-    print(index)
+    index = load_index()
+    if index is None:
+        print("Building index...")
+        index = build_index(documents)
+        save_index(index)
+    else:
+        print("Loaded cached index")
+    # print(index)
 
     while True:
         query = input("Search: ")
