@@ -29,15 +29,22 @@ def rank(query_tokens, index, documents):
 
         if token not in index:
             continue
+        
+        if token in index:
+            for doc_id, freq in index[token].items():
+                try:
+                    tf = freq / len(documents[doc_id].split())
+                except ZeroDivisionError:
+                    tf = 1
 
-        for doc_id, freq in index[token].items():
-            tf = freq / len(documents[doc_id].split())
+                score = tf * idf[token] * q_weight
 
-            score = tf * idf[token] * q_weight
+                if doc_id not in scores:
+                    scores[doc_id] = 0
 
-            if doc_id not in scores:
-                scores[doc_id] = 0
-
-            scores[doc_id] += score
+                scores[doc_id] += score
+        else:
+            # print(f"This particular token {token} is missing")
+            continue
 
     return sorted(scores.items(), key=lambda x: x[1], reverse=True)

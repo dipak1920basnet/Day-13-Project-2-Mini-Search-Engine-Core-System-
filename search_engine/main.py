@@ -5,7 +5,9 @@ from search import search, ORsearch, search_relevance
 
 def main():
     documents = load_documents()
-
+    if documents == None:
+        print("Currently document store is empty to search")
+        return
     index = build_index(documents)
     print(index)
 
