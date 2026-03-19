@@ -32,6 +32,7 @@ def rank(query_tokens, index, documents):
         
         if token in index:
             for doc_id, freq in index[token].items():
+                doc_id = int(doc_id)
                 try:
                     tf = freq / len(documents[doc_id].split())
                 except ZeroDivisionError:

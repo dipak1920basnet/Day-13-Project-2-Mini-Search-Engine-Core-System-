@@ -20,6 +20,10 @@ def main():
     engine = SearchEngine(documents,index)
     while True:
         query = input("Search: ")
+        if not query.strip():
+            print("Empty query")
+            continue
+
         # query starts to begin
         start = time.time()
         if query == "exit":
@@ -30,6 +34,10 @@ def main():
         # query time ends
         end = time.time()
         print("Query time:", end-start)
+
+        if not results:
+            print("No results found")
+
         for doc_id, score in results[:3]:
             print(f"{score:.4f} → {documents[doc_id]}")
     
