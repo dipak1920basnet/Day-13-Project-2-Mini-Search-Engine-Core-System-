@@ -1,5 +1,6 @@
 from tokenizer import tokenize
 
+
 def search(query, index):
     tokens = tokenize(query)
 
@@ -11,12 +12,12 @@ def search(query, index):
 
             if results is None:
                 results = docs
-            
+
             else:
                 results = results.intersection(docs)
         else:
             return []
-        
+
     return list(results) if results else []
 
 
@@ -31,12 +32,12 @@ def ORsearch(query, index):
 
             if results is None:
                 results = docs
-            
+
             else:
                 results = results.union(docs)
         else:
             continue
-        
+
     return list(results) if results else []
 
 
@@ -47,7 +48,7 @@ def search_relevance(doc_id, query_tokens, index):
         query_tokens = query_tokens.replace("OR", " ")
     tokens = tokenize(query_tokens)
 
-    print("query_tokens:",query_tokens)
+    print("query_tokens:", query_tokens)
     print("index:", index)
 
     relevance_score = {}
@@ -59,9 +60,11 @@ def search_relevance(doc_id, query_tokens, index):
                 relevance_score[key] += value
             except KeyError:
                 relevance_score[key] = value
-    
+
     documents = {}
     for i in doc_id:
         documents[i] = relevance_score[i]
-    relevance_score = dict(sorted(documents.items(), key=lambda item: item[1], reverse=True))
+    relevance_score = dict(
+        sorted(documents.items(), key=lambda item: item[1], reverse=True)
+    )
     return relevance_score

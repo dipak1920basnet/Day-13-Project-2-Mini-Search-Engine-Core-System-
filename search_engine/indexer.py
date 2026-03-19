@@ -1,8 +1,10 @@
 from tokenizer import tokenize
+
+
 def build_index(documents):
-    
+
     index = {}
-    print("documents: ",documents)
+    print("documents: ", documents)
 
     for doc_id, text in enumerate(documents):
         tokens = tokenize(text.lower())
@@ -22,4 +24,3 @@ def build_index(documents):
                 index[token][doc_id] = 1
 
     return index
-    

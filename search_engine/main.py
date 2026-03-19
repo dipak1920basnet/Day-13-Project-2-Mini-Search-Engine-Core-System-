@@ -15,16 +15,15 @@ def main():
         if query == "exit":
             break
         if "OR" in query:
-            query = query.replace("OR","")
+            query = query.replace("OR", "")
             results = ORsearch(query, index)
         else:
             results = search(query, index)
 
-        ranked_results = search_relevance(results,query, index)
+        ranked_results = search_relevance(results, query, index)
         for doc_id, score in ranked_results.items():
             print(documents[doc_id])
 
-    
 
 if __name__ == "__main__":
     main()
