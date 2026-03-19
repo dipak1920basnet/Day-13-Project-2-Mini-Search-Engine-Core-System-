@@ -1,4 +1,10 @@
 import math
+from collections import Counter
+
+# Get query weight
+def query_weight(query_tokens):
+    return Counter(query_tokens)
+      
 
 def compute_idf(index, total_docs):
     idf = {}
@@ -16,8 +22,10 @@ def rank(query_tokens, index, documents):
     total_docs = len(documents)
 
     idf = compute_idf(index, total_docs)
+    
+    query_weights = query_weight(query_tokens)
 
-    for token in query_tokens:
+    for token, q_weight in query_weights.items():
 
         if token not in index:
             continue
@@ -25,7 +33,7 @@ def rank(query_tokens, index, documents):
         for doc_id, freq in index[token].items():
             tf = freq / len(documents[doc_id].split())
 
-            score = tf * idf[token]
+            score = tf * idf[token] * q_weight
 
             if doc_id not in scores:
                 scores[doc_id] = 0
